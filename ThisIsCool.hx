@@ -11,6 +11,14 @@ class ThisIsCool
         var splitString:String = "\n";
         var chosenArray:String = "";
 
+
+        var isWires:Bool = false;
+
+        if (unparsed.charAt(0) == "R" || unparsed.charAt(0) == "L" || unparsed.charAt(0) == "U" || unparsed.charAt(0) == "D")
+        {
+            isWires = true;
+        }
+
         switch (splitType)
         {
             case 0:
@@ -29,14 +37,41 @@ class ThisIsCool
             }
     
             chosenArray = daSplit[chosenSplit];
-            trace(chosenArray);
         }
 
         var stringArray:Array<String> = chosenArray.split(splitString);
 
-        for (i in stringArray)
+        var dataLeft = stringArray.length - 1;
+        var i:Int = 0;
+        while (dataLeft > 0)
         {
-            output.push(Std.parseInt(i));
+            if (isWires)
+            {
+                var convertedInt:Int = 0;
+                var direction:String = stringArray[i].charAt(0);
+
+                switch (direction)
+                {
+                    case "U":
+                        convertedInt = 0;
+                    case "R":
+                        convertedInt = 1;
+                    case "D":
+                        convertedInt = 2;
+                    case "L":
+                        convertedInt = 3;
+                }
+
+                output.push(convertedInt);
+                output.push(Std.parseInt(stringArray[i].substring(1)));
+            }
+            else
+            {
+                output.push(Std.parseInt(stringArray[i]));
+            }
+
+            i++;
+            dataLeft -= 1;
         }
 
         // trace(output);
