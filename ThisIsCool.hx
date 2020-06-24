@@ -41,7 +41,7 @@ class ThisIsCool
 
         var stringArray:Array<String> = chosenArray.split(splitString);
 
-        var dataLeft = stringArray.length - 1;
+        var dataLeft = stringArray.length;
         var i:Int = 0;
         while (dataLeft > 0)
         {
